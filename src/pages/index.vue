@@ -1,7 +1,10 @@
 <script setup lang="ts">
-// 比赛时间为 90 分钟，场均进球数 为 2.79 所以每分钟进球的概率为 3.1%
 const FULLTIME = 90
-const PROB_PER_MINUTE = 0.031
+const HOME_XG_PER_SHOT = 0.145431
+const AWAY_XG_PER_SHOT = 0.119904
+const HOME_SHOT_PERCENTAGE = 0.53552
+const SHOT_PROB_PER_MINUTE = 0.32869
+
 const state = ref({
   homeScore: 0,
   awayScore: 0,
@@ -10,11 +13,15 @@ const state = ref({
 const timing = $computed(() => state.value.timing)
 
 function whoScored() {
-  if (Math.random() < PROB_PER_MINUTE) {
-    if (Math.random() < 0.5)
-      state.value.homeScore += 1
-    else
-      state.value.awayScore += 1
+  if (Math.random() < SHOT_PROB_PER_MINUTE) {
+    if (Math.random() < HOME_SHOT_PERCENTAGE) {
+      if (Math.random() < HOME_XG_PER_SHOT)
+        state.value.homeScore += 1
+    }
+    else {
+      if (Math.random() < AWAY_XG_PER_SHOT)
+        state.value.awayScore += 1
+    }
   }
 }
 
@@ -60,7 +67,7 @@ function reset() {
           {{ state.homeScore }} - {{ state.awayScore }}
         </div>
         <div text="5 gray">
-          {{ timing !== 90 ? timing : 'Full-Time' }}
+          {{ timing !== 90 ? `${timing}:00` : 'Full-Time' }}
         </div>
       </div>
       <div flex-1>
@@ -76,7 +83,8 @@ function reset() {
         v-if="timing > 0 && timing < 90"
         text="10"
         i-carbon-friendship
-        bg-green-600
+        bg-white
+        dark:bg-hex-121212
       />
       <button
         v-else
