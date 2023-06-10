@@ -9,18 +9,23 @@ const state = ref({
   homeScore: 0,
   awayScore: 0,
   timing: 0,
+  homeGoalLog: '',
+  awayGoalLog: '',
 })
-const timing = $computed(() => state.value.timing)
 
 function whoScored() {
   if (Math.random() < SHOT_PROB_PER_MINUTE) {
     if (Math.random() < HOME_SHOT_PERCENTAGE) {
-      if (Math.random() < HOME_XG_PER_SHOT)
+      if (Math.random() < HOME_XG_PER_SHOT) {
         state.value.homeScore += 1
+        state.value.homeGoalLog += `${state.value.timing}', `
+      }
     }
     else {
-      if (Math.random() < AWAY_XG_PER_SHOT)
+      if (Math.random() < AWAY_XG_PER_SHOT) {
         state.value.awayScore += 1
+        state.value.awayGoalLog += `${state.value.timing}', `
+      }
     }
   }
 }
@@ -40,6 +45,8 @@ function reset() {
   state.value.homeScore = 0
   state.value.awayScore = 0
   state.value.timing = 0
+  state.value.homeGoalLog = ''
+  state.value.awayGoalLog = ''
 }
 </script>
 
@@ -61,13 +68,44 @@ function reset() {
           <img w-12 src="https://crests.football-data.org/65.png">
         </div>
         <div>Man City</div>
+        <div
+          text="left gray"
+          flex="~ gap1"
+          justify-center
+          p5
+        >
+          <div
+            v-if="state.homeGoalLog.length !== 0"
+            i-carbon-circle-packing
+            mt="0.5"
+            style="min-width: 1.25rem;"
+          />
+          {{ state.homeGoalLog }}
+        </div>
       </div>
       <div flex-1>
         <div text="10">
           {{ state.homeScore }} - {{ state.awayScore }}
         </div>
         <div text="5 gray">
-          {{ timing !== 90 ? `${timing}:00` : 'Full-Time' }}
+          {{ state.timing !== 90 ? `${state.timing}:00` : 'Full-Time' }}
+        </div>
+        <!-- 按钮 -->
+        <div flex="~ gap1" justify-center pt-5>
+          <button
+            v-if="state.timing > 0 && state.timing < 90"
+            text="10"
+            i-carbon-friendship
+            bg-white
+            dark:bg-hex-121212
+          />
+          <button
+            v-else
+            text="10"
+            i-carbon-play-filled
+            bg-green-600
+            @click="playGame()"
+          />
         </div>
       </div>
       <div flex-1>
@@ -75,29 +113,22 @@ function reset() {
           <img w-12 src="https://crests.football-data.org/108.png">
         </div>
         <div>Inter</div>
+        <div
+          text="left gray"
+          flex="~ gap1"
+          justify-center
+          p5
+        >
+          <div
+            v-if="state.awayGoalLog.length !== 0"
+            i-carbon-circle-packing
+            mt="0.5"
+            style="min-width: 1.25rem;"
+          />
+          {{ state.awayGoalLog }}
+        </div>
       </div>
     </div>
-    <!-- 按钮 -->
-    <div flex="~ gap1" justify-center pt-5>
-      <button
-        v-if="timing > 0 && timing < 90"
-        text="10"
-        i-carbon-friendship
-        bg-white
-        dark:bg-hex-121212
-      />
-      <button
-        v-else
-        text="10"
-        i-carbon-play-filled
-        bg-green-600
-        @click="playGame()"
-      />
-    </div>
     <!-- 模拟内容 -->
-    <!-- <div p5 text="left gray" flex="~ gap1">
-      <div i-carbon-circle-dash />
-      <div i-carbon-circle-filled />
-    </div> -->
   </div>
 </template>
