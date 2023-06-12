@@ -1,53 +1,7 @@
 <script setup lang="ts">
-const FULLTIME = 90
-const HOME_XG_PER_SHOT = 0.145431
-const AWAY_XG_PER_SHOT = 0.119904
-const HOME_SHOT_PERCENTAGE = 0.53552
-const SHOT_PROB_PER_MINUTE = 0.32869
+import { Game } from '~/composables/logic'
 
-const state = ref({
-  homeScore: 0,
-  awayScore: 0,
-  timing: 0,
-  homeGoalLog: '',
-  awayGoalLog: '',
-})
-
-function whoScored() {
-  if (Math.random() < SHOT_PROB_PER_MINUTE) {
-    if (Math.random() < HOME_SHOT_PERCENTAGE) {
-      if (Math.random() < HOME_XG_PER_SHOT) {
-        state.value.homeScore += 1
-        state.value.homeGoalLog += `${state.value.timing}', `
-      }
-    }
-    else {
-      if (Math.random() < AWAY_XG_PER_SHOT) {
-        state.value.awayScore += 1
-        state.value.awayGoalLog += `${state.value.timing}', `
-      }
-    }
-  }
-}
-
-function playGame() {
-  reset()
-  const intervalId = setInterval(() => {
-    whoScored()
-    state.value.timing += 1
-
-    if (state.value.timing >= FULLTIME)
-      clearInterval(intervalId)
-  }, 100)
-}
-
-function reset() {
-  state.value.homeScore = 0
-  state.value.awayScore = 0
-  state.value.timing = 0
-  state.value.homeGoalLog = ''
-  state.value.awayGoalLog = ''
-}
+const game = new Game()
 </script>
 
 <template>
@@ -75,25 +29,25 @@ function reset() {
           p5
         >
           <div
-            v-if="state.homeGoalLog.length !== 0"
+            v-if="game.state.value.homeGoalLog.length !== 0"
             i-carbon-circle-packing
             mt="0.5"
             style="min-width: 1.25rem;"
           />
-          {{ state.homeGoalLog }}
+          {{ game.state.value.homeGoalLog }}
         </div>
       </div>
       <div flex-1>
         <div text="10">
-          {{ state.homeScore }} - {{ state.awayScore }}
+          {{ game.state.value.homeScore }} - {{ game.state.value.awayScore }}
         </div>
         <div text="5 gray">
-          {{ state.timing !== 90 ? `${state.timing}:00` : 'Full-Time' }}
+          {{ game.state.value.timing !== 90 ? `${game.state.value.timing}:00` : 'Full-Time' }}
         </div>
         <!-- 按钮 -->
         <div flex="~ gap1" justify-center pt-5>
           <button
-            v-if="state.timing > 0 && state.timing < 90"
+            v-if="game.state.value.timing > 0 && game.state.value.timing < 90"
             text="10"
             i-carbon-friendship
             bg-white
@@ -104,7 +58,7 @@ function reset() {
             text="10"
             i-carbon-play-filled
             bg-green-600
-            @click="playGame()"
+            @click="game.play()"
           />
         </div>
       </div>
@@ -120,12 +74,12 @@ function reset() {
           p5
         >
           <div
-            v-if="state.awayGoalLog.length !== 0"
+            v-if="game.state.value.awayGoalLog.length !== 0"
             i-carbon-circle-packing
             mt="0.5"
             style="min-width: 1.25rem;"
           />
-          {{ state.awayGoalLog }}
+          {{ game.state.value.awayGoalLog }}
         </div>
       </div>
     </div>
