@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Game } from '~/composables/logic'
 
+const FULLTIME = 90
+const DELAY = 100
+
 const game = new Game()
 </script>
 
@@ -58,7 +61,7 @@ const game = new Game()
             text="10"
             i-carbon-play-filled
             bg-green-600
-            @click="game.play()"
+            @click="game.play(FULLTIME, DELAY)"
           />
         </div>
       </div>
