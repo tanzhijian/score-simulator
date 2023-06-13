@@ -9,10 +9,12 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Match: typeof import('./src/components/Match.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TheCounter: typeof import('./src/components/TheCounter.vue')['default']
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
     TheInput: typeof import('./src/components/TheInput.vue')['default']
+    TheMatch: typeof import('./src/components/TheMatch.vue')['default']
   }
 }

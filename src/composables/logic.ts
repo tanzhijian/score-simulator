@@ -11,6 +11,7 @@ interface GameState {
   timing: number
   homeGoalLog: string
   awayGoalLog: string
+  played?: boolean
 }
 
 export class Game {
@@ -18,6 +19,7 @@ export class Game {
 
   constructor() {
     this.reset()
+    this.state.value.played = false
   }
 
   whoScored(homeScore: number, awayScore: number) {
@@ -38,6 +40,7 @@ export class Game {
 
   play(fulltime = 90, delay = 100) {
     this.reset()
+    this.state.value.played = true
     const intervalId = setInterval(() => {
       const [homeScore, awayScore] = this.whoScored(0, 0)
       if (homeScore) {
