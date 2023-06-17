@@ -1,184 +1,202 @@
-{
-    "matches": [
-        {
-            "id": 416010,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Crystal Palace FC",
-                "short_name": "Crystal Palace",
-                "crest": "https://crests.football-data.org/354.png"
-            },
-            "away_team": {
-                "name": "Nottingham Forest FC",
-                "short_name": "Nottingham",
-                "crest": "https://crests.football-data.org/351.png"
-            }
-        },
-        {
-            "id": 416006,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Manchester United FC",
-                "short_name": "Man United",
-                "crest": "https://crests.football-data.org/66.png"
-            },
-            "away_team": {
-                "name": "Fulham FC",
-                "short_name": "Fulham",
-                "crest": "https://crests.football-data.org/63.svg"
-            }
-        },
-        {
-            "id": 416012,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Brentford FC",
-                "short_name": "Brentford",
-                "crest": "https://crests.football-data.org/402.png"
-            },
-            "away_team": {
-                "name": "Manchester City FC",
-                "short_name": "Man City",
-                "crest": "https://crests.football-data.org/65.png"
-            }
-        },
-        {
-            "id": 416008,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Leeds United FC",
-                "short_name": "Leeds United",
-                "crest": "https://crests.football-data.org/341.png"
-            },
-            "away_team": {
-                "name": "Tottenham Hotspur FC",
-                "short_name": "Tottenham",
-                "crest": "https://crests.football-data.org/73.svg"
-            }
-        },
-        {
-            "id": 416005,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Southampton FC",
-                "short_name": "Southampton",
-                "crest": "https://crests.football-data.org/340.png"
-            },
-            "away_team": {
-                "name": "Liverpool FC",
-                "short_name": "Liverpool",
-                "crest": "https://crests.football-data.org/64.png"
-            }
-        },
-        {
-            "id": 416011,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Chelsea FC",
-                "short_name": "Chelsea",
-                "crest": "https://crests.football-data.org/61.png"
-            },
-            "away_team": {
-                "name": "Newcastle United FC",
-                "short_name": "Newcastle",
-                "crest": "https://crests.football-data.org/67.png"
-            }
-        },
-        {
-            "id": 416007,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Leicester City FC",
-                "short_name": "Leicester City",
-                "crest": "https://crests.football-data.org/338.png"
-            },
-            "away_team": {
-                "name": "West Ham United FC",
-                "short_name": "West Ham",
-                "crest": "https://crests.football-data.org/563.png"
-            }
-        },
-        {
-            "id": 416013,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Aston Villa FC",
-                "short_name": "Aston Villa",
-                "crest": "https://crests.football-data.org/58.png"
-            },
-            "away_team": {
-                "name": "Brighton & Hove Albion FC",
-                "short_name": "Brighton Hove",
-                "crest": "https://crests.football-data.org/397.svg"
-            }
-        },
-        {
-            "id": 416009,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Everton FC",
-                "short_name": "Everton",
-                "crest": "https://crests.football-data.org/62.png"
-            },
-            "away_team": {
-                "name": "AFC Bournemouth",
-                "short_name": "Bournemouth",
-                "crest": "https://crests.football-data.org/1044.png"
-            }
-        },
-        {
-            "id": 416014,
-            "competition": {
-                "name": "Premier League",
-                "emblem": "https://crests.football-data.org/PL.png"
-            },
-            "start_time": "2023-05-28 15:30",
-            "home_team": {
-                "name": "Arsenal FC",
-                "short_name": "Arsenal",
-                "crest": "https://crests.football-data.org/57.png"
-            },
-            "away_team": {
-                "name": "Wolverhampton Wanderers FC",
-                "short_name": "Wolverhampton",
-                "crest": "https://crests.football-data.org/76.svg"
-            }
-        }
-    ]
-}
+[
+  {
+    "id": 416013,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Aston Villa",
+      "crest": "https://crests.football-data.org/58.png",
+      "shots": 432,
+      "xg": 53.06513203680515
+    },
+    "away_team": {
+      "name": "Brighton",
+      "crest": "https://crests.football-data.org/397.svg",
+      "shots": 617,
+      "xg": 84.13641863968223
+    }
+  },
+  {
+    "id": 416009,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Everton",
+      "crest": "https://crests.football-data.org/62.png",
+      "shots": 430,
+      "xg": 51.04135813936591
+    },
+    "away_team": {
+      "name": "Bournemouth",
+      "crest": "https://crests.football-data.org/1044.png",
+      "shots": 357,
+      "xg": 40.80111336475238
+    }
+  },
+  {
+    "id": 416005,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Southampton",
+      "crest": "https://crests.football-data.org/340.png",
+      "shots": 414,
+      "xg": 39.73569872695953
+    },
+    "away_team": {
+      "name": "Liverpool",
+      "crest": "https://crests.football-data.org/64.png",
+      "shots": 610,
+      "xg": 85.09102913178504
+    }
+  },
+  {
+    "id": 416011,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Chelsea",
+      "crest": "https://crests.football-data.org/61.png",
+      "shots": 483,
+      "xg": 53.08860981464386
+    },
+    "away_team": {
+      "name": "Newcastle United",
+      "crest": "https://crests.football-data.org/67.png",
+      "shots": 575,
+      "xg": 83.38727551419288
+    }
+  },
+  {
+    "id": 416007,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Leicester City",
+      "crest": "https://crests.football-data.org/338.png",
+      "shots": 419,
+      "xg": 51.5329648591578
+    },
+    "away_team": {
+      "name": "West Ham",
+      "crest": "https://crests.football-data.org/563.png",
+      "shots": 475,
+      "xg": 52.75659039057791
+    }
+  },
+  {
+    "id": 416008,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Leeds",
+      "crest": "https://crests.football-data.org/341.png",
+      "shots": 464,
+      "xg": 51.998012396506965
+    },
+    "away_team": {
+      "name": "Tottenham",
+      "crest": "https://crests.football-data.org/73.svg",
+      "shots": 522,
+      "xg": 60.437069546896964
+    }
+  },
+  {
+    "id": 416010,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Crystal Palace",
+      "crest": "https://crests.football-data.org/354.png",
+      "shots": 427,
+      "xg": 43.76600298844278
+    },
+    "away_team": {
+      "name": "Nottingham Forest",
+      "crest": "https://crests.football-data.org/351.png",
+      "shots": 370,
+      "xg": 42.292273403611034
+    }
+  },
+  {
+    "id": 416006,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Manchester United",
+      "crest": "https://crests.football-data.org/66.png",
+      "shots": 594,
+      "xg": 75.74508742708713
+    },
+    "away_team": {
+      "name": "Fulham",
+      "crest": "https://crests.football-data.org/63.svg",
+      "shots": 431,
+      "xg": 51.374790051952004
+    }
+  },
+  {
+    "id": 416014,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Arsenal",
+      "crest": "https://crests.football-data.org/57.png",
+      "shots": 596,
+      "xg": 81.363066569902
+    },
+    "away_team": {
+      "name": "Wolverhampton",
+      "crest": "https://crests.football-data.org/76.svg",
+      "shots": 416,
+      "xg": 38.416544328443706
+    }
+  },
+  {
+    "id": 416012,
+    "competition": {
+      "name": "Premier League",
+      "emblem": "https://crests.football-data.org/PL.png"
+    },
+    "start_time": "2023-05-28 15:30",
+    "home_team": {
+      "name": "Brentford",
+      "crest": "https://crests.football-data.org/402.png",
+      "shots": 410,
+      "xg": 62.64052318222821
+    },
+    "away_team": {
+      "name": "Manchester City",
+      "crest": "https://crests.football-data.org/65.png",
+      "shots": 602,
+      "xg": 87.5468477671966
+    }
+  }
+]

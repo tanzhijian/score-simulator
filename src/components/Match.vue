@@ -1,12 +1,18 @@
 <script setup lang="ts">
+import type { Match } from '~/types'
 import { Game } from '~/composables/logic'
 
-defineProps<{ match }>()
+const props = defineProps<{ match: Match }>()
 
 const FULLTIME = 90
 const DELAY = 100
 
-const game = new Game()
+const game = new Game(
+  props.match.home_team.shots,
+  props.match.home_team.xg,
+  props.match.away_team.shots,
+  props.match.away_team.xg,
+)
 </script>
 
 <template>
@@ -26,7 +32,7 @@ const game = new Game()
         <div flex items-center justify-center>
           <img w-12 :src="match.home_team.crest">
         </div>
-        <div>{{ match.home_team.short_name }}</div>
+        <div>{{ match.home_team.name }}</div>
         <div
           text="left gray"
           flex="~ gap1"
@@ -79,7 +85,7 @@ const game = new Game()
         <div flex items-center justify-center>
           <img w-12 :src="match.away_team.crest">
         </div>
-        <div>{{ match.away_team.short_name }}</div>
+        <div>{{ match.away_team.name }}</div>
         <div
           text="left gray"
           flex="~ gap1"

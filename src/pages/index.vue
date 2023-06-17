@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { matches } from '~/data/matches.json'
+import matches from '~/data/matches.json'
 </script>
 
 <template>
