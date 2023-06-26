@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { useDateFormat } from '@vueuse/core'
 import type { Match } from '~/types'
 import { Game } from '~/composables/logic'
 
 const props = defineProps<{ match: Match }>()
+
+const formatter = 'YYYY-MM-DD HH:mm'
+const formattedDatetime = useDateFormat(props.match.start_time, formatter)
 
 const FULLTIME = 90
 const DELAY = 100
@@ -54,7 +58,7 @@ const game = new Game(
         </div>
         <div text="5 gray">
           <span v-if="!game.state.value.played" text-3>
-            {{ match.start_time }}
+            {{ formattedDatetime }}
           </span>
           <span v-else-if="game.state.value.timing >= 90">
             Full-Time
