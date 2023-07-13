@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import matchesData from '~/data/matches.json'
 
-let selectedDate = matchesData[1].date
+let selectedDate = matchesData.data[1].date
 const selectedMatches = ref()
 
 function filterMatches(date: string) {
-  for (const dayMatches of matchesData) {
+  for (const dayMatches of matchesData.data) {
     if (dayMatches.date === date) {
       selectedDate = dayMatches.date
-      selectedMatches.value = dayMatches.matches
+      selectedMatches.value = dayMatches.data
     }
   }
 }
@@ -18,7 +18,7 @@ filterMatches(selectedDate)
 
 <template>
   <div mb-5 flex bg-white shadow="" dark:bg-hex-2e2a2e>
-    <div v-for="dayMatches in matchesData" :key="dayMatches.date" flex-1>
+    <div v-for="dayMatches in matchesData.data" :key="dayMatches.date" flex-1>
       <button
         v-if="dayMatches.date === selectedDate"
         pb-5

@@ -24,7 +24,7 @@ const game = new Game(
     <!-- 比赛 -->
     <div flex items-center justify-center pb-5>
       <div pr-2>
-        <img w-8 :src="match.competition.emblem">
+        <img w-8 :src="match.competition.logo">
       </div>
       <div>
         {{ match.competition.name }}
@@ -34,7 +34,7 @@ const game = new Game(
     <div flex>
       <div flex-1>
         <div flex items-center justify-center>
-          <img h-12 :src="match.home_team.crest">
+          <img h-12 :src="match.home_team.logo">
         </div>
         <div>{{ match.home_team.name }}</div>
         <div
@@ -63,7 +63,7 @@ const game = new Game(
           <span v-else-if="game.state.value.timing >= 90">
             Full-Time
           </span>
-          <span v-else>
+          <span v-else text-4>
             {{ `${game.state.value.timing}:00` }}
           </span>
         </div>
@@ -84,7 +84,7 @@ const game = new Game(
       </div>
       <div flex-1>
         <div flex items-center justify-center>
-          <img h-12 :src="match.away_team.crest">
+          <img h-12 :src="match.away_team.logo">
         </div>
         <div>{{ match.away_team.name }}</div>
         <div

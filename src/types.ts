@@ -1,19 +1,20 @@
 export interface Match {
-  id: number
+  id: string
   competition: {
+    code: string
     name: string
-    emblem: string
+    logo: string
   }
   start_time: string
   home_team: {
     name: string
-    crest: string
+    logo: string
     shots: number
     xg: number
   }
   away_team: {
     name: string
-    crest: string
+    logo: string
     shots: number
     xg: number
   }
