@@ -8,6 +8,15 @@ function filterMatches(date: string) {
   for (const dayMatches of matchesData.data) {
     if (dayMatches.date === date) {
       selectedDate = dayMatches.date
+      dayMatches.data.sort((a: any, b: any) => {
+        const aDate = new Date(a.start_time)
+        const bDate = new Date(b.start_time)
+        if (aDate < bDate)
+          return -1
+        if (aDate > bDate)
+          return 1
+        return 0
+      })
       selectedMatches.value = dayMatches.data
     }
   }
