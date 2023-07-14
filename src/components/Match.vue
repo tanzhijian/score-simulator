@@ -46,7 +46,7 @@ const game = new Game(
           <div
             v-if="game.state.value.homeGoalLog.length !== 0"
             i-carbon-circle-packing
-            mt="0.5"
+            mt="0.3"
             style="min-width: 1.25rem;"
           />
           {{ game.state.value.homeGoalLog }}
@@ -96,7 +96,7 @@ const game = new Game(
           <div
             v-if="game.state.value.awayGoalLog.length !== 0"
             i-carbon-circle-packing
-            mt="0.2"
+            mt="0.3"
             style="min-width: 1.25rem;"
           />
           {{ game.state.value.awayGoalLog }}
