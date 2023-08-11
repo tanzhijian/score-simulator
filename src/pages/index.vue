@@ -1,11 +1,23 @@
 <script setup lang="ts">
-import matchesData from '~/data/matches.json'
+import { useDateFormat, useFetch, useNow } from '@vueuse/core'
 
-let selectedDate = matchesData.data[1].date
+const today = useDateFormat(useNow(), 'YYYY-MM-DD')
+let selectedDate = today.value
+
 const selectedMatches = ref()
+const matchesData = ref(
+  {
+    data: [
+      {
+        date: '',
+        data: [],
+      },
+    ],
+  },
+)
 
 function filterMatches(date: string) {
-  for (const dayMatches of matchesData.data) {
+  for (const dayMatches of matchesData.value.data) {
     if (dayMatches.date === date) {
       selectedDate = dayMatches.date
       dayMatches.data.sort((a: any, b: any) => {
@@ -22,7 +34,14 @@ function filterMatches(date: string) {
   }
 }
 
-filterMatches(selectedDate)
+async function getMatchesData() {
+  const url = 'https://raw.githubusercontent.com/tanzhijian/score-simulator-data/main/matches.json'
+  const { data } = await useFetch(url).get().json()
+  matchesData.value = data.value
+  filterMatches(selectedDate)
+}
+
+getMatchesData()
 </script>
 
 <template>
