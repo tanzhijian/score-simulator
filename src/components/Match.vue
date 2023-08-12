@@ -54,23 +54,32 @@ const game = new Game(
       </div>
       <div flex-1>
         <div text-8>
-          {{ game.state.value.homeScore }} - {{ game.state.value.awayScore }}
+          {{
+            match.finished ? match.home_team.score : game.state.value.homeScore
+          }}
+          -
+          {{
+            match.finished ? match.away_team.score : game.state.value.awayScore
+          }}
         </div>
         <div text="gray">
           <span v-if="!game.state.value.played">
             {{ formattedDatetime }}
           </span>
           <span v-else-if="game.state.value.timing >= 90">
-            Full-Time
+            Full time
           </span>
-          <span v-else text-4>
+          <span v-else text="green-600 4">
             {{ `${game.state.value.timing}:00` }}
           </span>
         </div>
         <!-- 按钮 -->
         <div flex="~ gap1" justify-center pt-5 text-8>
+          <div v-if="match.finished" text="gray 4">
+            Full time
+          </div>
           <button
-            v-if="game.state.value.timing > 0 && game.state.value.timing < 90"
+            v-else-if="game.state.value.timing > 0 && game.state.value.timing < 90"
             i-carbon-friendship
             class="bg-gray-500/0"
           />

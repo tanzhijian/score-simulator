@@ -6,16 +6,19 @@ export interface Match {
     logo: string
   }
   start_time: string
+  finished: boolean
   home_team: {
     name: string
     logo: string
     shots: number
     xg: number
+    score: number
   }
   away_team: {
     name: string
     logo: string
     shots: number
     xg: number
+    score: number
   }
 }
