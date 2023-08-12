@@ -32,6 +32,7 @@ const game = new Game(
     </div>
     <!-- 队伍信息和比分 -->
     <div flex>
+      <!-- 主队信息 -->
       <div flex-1>
         <div flex items-center justify-center>
           <img h-12 :src="match.home_team.logo">
@@ -52,8 +53,12 @@ const game = new Game(
           {{ game.state.value.homeGoalLog }}
         </div>
       </div>
+      <!-- 比分和状态 -->
       <div flex-1>
-        <div text-8>
+        <div v-if="!game.state.value.played && !match.finished" text-8>
+          -
+        </div>
+        <div v-else text-8>
           {{
             match.finished ? match.home_team.score : game.state.value.homeScore
           }}
@@ -91,6 +96,7 @@ const game = new Game(
           />
         </div>
       </div>
+      <!-- 客队信息 -->
       <div flex-1>
         <div flex items-center justify-center>
           <img h-12 :src="match.away_team.logo">
