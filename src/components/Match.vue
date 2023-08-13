@@ -83,11 +83,18 @@ const game = new Game(
           <div v-if="match.finished" text="gray 4">
             Full time
           </div>
-          <button
-            v-else-if="game.state.value.timing > 0 && game.state.value.timing < 90"
-            i-carbon-friendship
-            class="bg-gray-500/0"
-          />
+          <div
+            v-else-if="
+              game.state.value.timing > 0 && game.state.value.timing < 90
+            "
+            text="gray 3"
+          >
+            {{
+              `${game.state.value.homeShots}
+              -- Shots --
+              ${game.state.value.awayShots}`
+            }}
+          </div>
           <button
             v-else
             i-carbon-play-filled
