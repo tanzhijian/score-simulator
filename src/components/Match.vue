@@ -14,8 +14,10 @@ const DELAY = 100
 const game = new Game(
   props.match.home_team.shots,
   props.match.home_team.xg,
+  props.match.home_team.matches_played,
   props.match.away_team.shots,
   props.match.away_team.xg,
+  props.match.away_team.matches_played,
 )
 </script>
 

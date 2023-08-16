@@ -22,15 +22,20 @@ export class Game {
   constructor(
     public homeShots: number,
     public homeXG: number,
+    public homeMatchesPlayed: number,
     public awayShots: number,
     public awayXG: number,
+    public awayMatchesPlayed: number,
   ) {
     this.reset()
     this.state.value.played = false
     this.homeXGPerShot = homeXG / homeShots
     this.awayXGPerShot = awayXG / awayShots
     this.homeShotPercentage = homeShots / (homeShots + awayShots)
-    this.shotProbPerMinute = (homeShots + awayShots) / 38 / 90
+    this.shotProbPerMinute
+      = (homeShots + awayShots)
+      / ((homeMatchesPlayed + awayMatchesPlayed) / 2)
+      / 90
   }
 
   attack(

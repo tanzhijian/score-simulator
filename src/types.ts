@@ -13,6 +13,7 @@ export interface Match {
     shots: number
     xg: number
     score: number
+    matches_played: number
   }
   away_team: {
     name: string
@@ -20,5 +21,6 @@ export interface Match {
     shots: number
     xg: number
     score: number
+    matches_played: number
   }
 }
