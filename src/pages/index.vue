@@ -5,16 +5,7 @@ const today = useDateFormat(useNow(), 'YYYY-MM-DD')
 let selectedDate = today.value
 
 const selectedMatches = ref()
-const matchesData = ref(
-  {
-    data: [
-      {
-        date: '',
-        data: [],
-      },
-    ],
-  },
-)
+const matchesData = ref()
 
 function filterMatches(date: string) {
   for (const dayMatches of matchesData.value.data) {
@@ -41,6 +32,8 @@ async function getMatchesData() {
   filterMatches(selectedDate)
 }
 
+selectedMatches.value = []
+matchesData.value = {}
 getMatchesData()
 </script>
 
@@ -61,5 +54,6 @@ getMatchesData()
       </button>
     </div>
   </div>
+  <NoMatch v-if="selectedMatches.length < 1" />
   <Match v-for="match in selectedMatches" :key="match.id" :match="match" />
 </template>
