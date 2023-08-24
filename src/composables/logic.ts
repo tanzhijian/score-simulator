@@ -8,6 +8,8 @@ interface GameState {
   timing: number
   homeGoalLog: string
   awayGoalLog: string
+  shotsProgress: string
+  XGProgress: string
   played?: boolean
 }
 
@@ -38,32 +40,48 @@ export class Game {
       / 90
   }
 
-  attack(
-    homeShot: number,
-    awayShot: number,
-    homeScore: number,
-    awayScore: number,
-  ) {
+  buildProgressBar(progress: number) {
+    let bar = ''
+    for (let i = 1; i <= 10; i++)
+      bar += progress >= i * 10 ? '█' : '░'
+    return bar
+  }
+
+  attack() {
+    let homeShot = 0
+    let awayShot = 0
+    let homeScore = 0
+    let awayScore = 0
+    let homeShotXG = 0
+    let awayShotXG = 0
+
     if (Math.random() < this.shotProbPerMinute) {
       if (Math.random() < this.homeShotPercentage) {
         homeShot = 1
-        if (Math.random() < this.homeXGPerShot)
+        homeShotXG = Math.random()
+        if (homeShotXG < this.homeXGPerShot)
           homeScore = 1
       }
       else {
         awayShot = 1
-        if (Math.random() < this.awayXGPerShot)
+        awayShotXG = Math.random()
+        if (awayShotXG < this.awayXGPerShot)
           awayScore = 1
       }
     }
-    return [homeShot, awayShot, homeScore, awayScore]
+    return [homeShot, awayShot, homeScore, awayScore, homeShotXG, awayShotXG]
   }
 
   play(fulltime = 90, delay = 100) {
     this.reset()
     this.state.value.played = true
+
+    let homeXG = 0
+    let awayXG = 0
+
     const intervalId = setInterval(() => {
-      const [homeShot, awayShot, homeScore, awayScore] = this.attack(0, 0, 0, 0)
+      const [homeShot, awayShot, homeScore, awayScore, homeShotXG, awayShotXG]
+        = this.attack()
       this.state.value.homeShots += homeShot
       this.state.value.awayShots += awayShot
       if (homeScore) {
@@ -75,10 +93,24 @@ export class Game {
         this.state.value.awayGoalLog += `${this.state.value.timing}', `
       }
 
+      let process = 50
+      const allShots = this.state.value.homeShots + this.state.value.awayShots
+      if (allShots > 0)
+        process = this.state.value.homeShots / (allShots) * 100
+      this.state.value.shotsProgress = this.buildProgressBar(process)
+
       this.state.value.timing += 1
 
-      if (this.state.value.timing >= fulltime)
+      homeXG += homeShotXG
+      awayXG += awayShotXG
+
+      if (this.state.value.timing >= fulltime) {
         clearInterval(intervalId)
+
+        this.state.value.XGProgress = this.buildProgressBar(
+          homeXG / (homeXG + awayXG) * 100,
+        )
+      }
     }, delay)
   }
 
@@ -91,6 +123,8 @@ export class Game {
       timing: 0,
       homeGoalLog: '',
       awayGoalLog: '',
+      shotsProgress: '',
+      XGProgress: '',
     }
   }
 }

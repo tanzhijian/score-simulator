@@ -74,7 +74,9 @@ const game = new Game(
             {{ formattedDatetime }}
           </span>
           <span v-else-if="game.state.value.timing >= 90">
-            Full time
+            <div text="green-600 4" font-mono>
+              {{ game.state.value.XGProgress }}
+            </div>
           </span>
           <span v-else text="green-600 4">
             {{ `${game.state.value.timing}:00` }}
@@ -89,13 +91,18 @@ const game = new Game(
             v-else-if="
               game.state.value.timing > 0 && game.state.value.timing < 90
             "
-            text="gray 3"
+            text="3"
           >
-            {{
-              `${game.state.value.homeShots}
-              -- Shots --
-              ${game.state.value.awayShots}`
-            }}
+            <div>
+              - Shots -
+            </div>
+            <div>
+              {{ game.state.value.homeShots }}
+              <span text="green-600" font-mono>
+                {{ game.state.value.shotsProgress }}
+              </span>
+              {{ game.state.value.awayShots }}
+            </div>
           </div>
           <button
             v-else
