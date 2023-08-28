@@ -22,6 +22,12 @@ describe('Game', () => {
     expect(bar).toMatchInlineSnapshot('"█████░░░░░"')
   })
 
+  it('generateXG', () => {
+    const xg = game.generateXG()
+    expect(xg).toBeGreaterThan(0)
+    expect(xg).toBeLessThan(1)
+  })
+
   it('reset', () => {
     game.reset()
     expect(game.state.value.timing).toEqual(0)

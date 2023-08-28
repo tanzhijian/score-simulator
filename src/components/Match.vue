@@ -69,18 +69,23 @@ const game = new Game(
             match.finished ? match.away_team.score : game.state.value.awayScore
           }}
         </div>
-        <div text="gray">
-          <span v-if="!game.state.value.played">
+        <div>
+          <div v-if="!game.state.value.played" text="gray">
             {{ formattedDatetime }}
-          </span>
-          <span v-else-if="game.state.value.timing >= 90">
-            <div text="green-600 4" font-mono>
-              {{ game.state.value.XGProgress }}
+          </div>
+          <div v-else-if="game.state.value.timing >= 90">
+            <div>
+              {{ game.state.value.homeXG.toFixed(2) }}
+              - xG -
+              {{ game.state.value.awayXG.toFixed(2) }}
             </div>
-          </span>
-          <span v-else text="green-600 4">
+            <span text="green-600" font-mono>
+              {{ game.state.value.xgProgress }}
+            </span>
+          </div>
+          <div v-else text="green-600 4">
             {{ `${game.state.value.timing}:00` }}
-          </span>
+          </div>
         </div>
         <!-- 按钮 -->
         <div flex="~ gap1" justify-center pt-5 text-8>
