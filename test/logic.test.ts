@@ -23,7 +23,7 @@ describe('Game', () => {
   })
 
   it('generateXG', () => {
-    const xg = game.generateXG()
+    const xg = game.generateXG(0.1)
     expect(xg).toBeGreaterThan(0)
     expect(xg).toBeLessThan(1)
   })

@@ -49,12 +49,9 @@ export class Game {
     return bar
   }
 
-  generateXG() {
+  generateXG(mu: number, sigma = 0.1) {
     // 使用逆变换法生成正态分布的随机数来得到 xg
-    // 先使用一点假设的数值
-    const mu = 0.1 // 均值
-    const sigma = 0.1 // 标准差
-
+    // 标准差先使用一点假设的数值
     const u = Math.random()
     const z
       = Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * Math.random())
@@ -79,13 +76,13 @@ export class Game {
     if (Math.random() < this.shotProbPerMinute) {
       if (Math.random() < this.homeShotPercentage) {
         homeShot = 1
-        homeShotXG = this.generateXG()
+        homeShotXG = this.generateXG(this.homeXGPerShot)
         if (Math.random() < this.homeXGPerShot)
           homeScore = 1
       }
       else {
         awayShot = 1
-        awayShotXG = this.generateXG()
+        awayShotXG = this.generateXG(this.awayXGPerShot)
         if (Math.random() < this.awayXGPerShot)
           awayScore = 1
       }
