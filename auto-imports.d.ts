@@ -289,7 +289,11 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
+<<<<<<< HEAD
   export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
+=======
+  export type { Component, ComponentPublicInstance, ComputedRef, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
+>>>>>>> c3e2ffc (fix update packages)
 }
 // for vue template auto import
 import { UnwrapRef } from 'vue'

@@ -1,14 +1,18 @@
 {
   "type": "module",
   "private": true,
+<<<<<<< HEAD
   "packageManager": "pnpm@8.9.2",
+=======
+  "packageManager": "pnpm@8.8.0",
+>>>>>>> c3e2ffc (fix update packages)
   "scripts": {
     "build": "vite build",
-    "dev": "vite --port 3334",
+    "dev": "vite --port 3334 --open",
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit",
     "preview": "vite preview",
-    "test": "vitest --update",
+    "test": "vitest",
     "up": "taze major -I",
     "postinstall": "npx simple-git-hooks"
   },
