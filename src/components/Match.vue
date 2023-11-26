@@ -6,18 +6,18 @@ import { Game } from '~/composables/logic'
 const props = defineProps<{ match: Match }>()
 
 const formatter = 'YYYY-MM-DD HH:mm'
-const formattedDatetime = useDateFormat(props.match.start_time, formatter)
+const formattedDatetime = useDateFormat(props.match.utc_time, formatter)
 
 const FULLTIME = 90
 const DELAY = 100
 
 const game = new Game(
-  props.match.home_team.shots,
-  props.match.home_team.xg,
-  props.match.home_team.matches_played,
-  props.match.away_team.shots,
-  props.match.away_team.xg,
-  props.match.away_team.matches_played,
+  props.match.home.shots,
+  props.match.home.xg,
+  props.match.home.played,
+  props.match.away.shots,
+  props.match.away.xg,
+  props.match.away.played,
 )
 </script>
 
@@ -37,19 +37,12 @@ const game = new Game(
       <!-- 主队信息 -->
       <div flex-1>
         <div flex items-center justify-center>
-          <img h-12 :src="match.home_team.logo">
+          <img h-12 :src="match.home.logo">
         </div>
-        <div>{{ match.home_team.name }}</div>
-        <div
-          text="left gray"
-          flex="~ gap1"
-          justify-center
-          p5
-        >
+        <div>{{ match.home.name }}</div>
+        <div text="left gray" flex="~ gap1" justify-center p5>
           <div
-            v-if="game.state.value.homeGoalLog.length !== 0"
-            i-carbon-circle-packing
-            mt="0.3"
+            v-if="game.state.value.homeGoalLog.length !== 0" i-carbon-circle-packing mt="0.3"
             style="min-width: 1.25rem;"
           />
           {{ game.state.value.homeGoalLog }}
@@ -62,11 +55,11 @@ const game = new Game(
         </div>
         <div v-else text-8>
           {{
-            match.finished ? match.home_team.score : game.state.value.homeScore
+            match.finished ? match.home.score : game.state.value.homeScore
           }}
           -
           {{
-            match.finished ? match.away_team.score : game.state.value.awayScore
+            match.finished ? match.away.score : game.state.value.awayScore
           }}
         </div>
         <div>
@@ -93,10 +86,8 @@ const game = new Game(
             Full time
           </div>
           <div
-            v-else-if="
-              game.state.value.timing > 0 && game.state.value.timing < 90
-            "
-            text="3"
+            v-else-if="game.state.value.timing > 0 && game.state.value.timing < 90
+            " text="3"
           >
             <div>
               - Shots -
@@ -109,30 +100,18 @@ const game = new Game(
               {{ game.state.value.awayShots }}
             </div>
           </div>
-          <button
-            v-else
-            i-carbon-play-filled
-            bg-green-600
-            @click="game.play(FULLTIME, DELAY)"
-          />
+          <button v-else i-carbon-play-filled bg-green-600 @click="game.play(FULLTIME, DELAY)" />
         </div>
       </div>
       <!-- 客队信息 -->
       <div flex-1>
         <div flex items-center justify-center>
-          <img h-12 :src="match.away_team.logo">
+          <img h-12 :src="match.away.logo">
         </div>
-        <div>{{ match.away_team.name }}</div>
-        <div
-          text="left gray"
-          flex="~ gap1"
-          justify-center
-          p5
-        >
+        <div>{{ match.away.name }}</div>
+        <div text="left gray" flex="~ gap1" justify-center p5>
           <div
-            v-if="game.state.value.awayGoalLog.length !== 0"
-            i-carbon-circle-packing
-            mt="0.3"
+            v-if="game.state.value.awayGoalLog.length !== 0" i-carbon-circle-packing mt="0.3"
             style="min-width: 1.25rem;"
           />
           {{ game.state.value.awayGoalLog }}

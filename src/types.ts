@@ -1,26 +1,25 @@
 export interface Match {
-  id: string
-  competition: {
-    code: string
-    name: string
-    logo: string
-  }
-  start_time: string
+  name: string
+  utc_time: string
   finished: boolean
-  home_team: {
+  competition: {
     name: string
     logo: string
-    shots: number
-    xg: number
-    score: number
-    matches_played: number
   }
-  away_team: {
+  home: {
     name: string
     logo: string
     shots: number
     xg: number
     score: number
-    matches_played: number
+    played: number
+  }
+  away: {
+    name: string
+    logo: string
+    shots: number
+    xg: number
+    score: number
+    played: number
   }
 }
