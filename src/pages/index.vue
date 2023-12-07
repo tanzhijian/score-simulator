@@ -27,7 +27,7 @@ function filterMatches(date: string) {
 }
 
 async function getMatchesData() {
-  const url = 'https://raw.githubusercontent.com/tanzhijian/score-simulator-data/main/matches.json'
+  const url = 'https://raw.githubusercontent.com/tanzhijian/score-simulator-data/release/matches.json'
   const { data } = await useFetch(url).get().json()
   matchesData.value = data.value
   filterMatches(selectedDate)
