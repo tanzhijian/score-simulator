@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useDateFormat } from '@vueuse/core'
-import type { Match } from '~/types'
-import { Game } from '~/composables/logic'
+import type { MatchTypes } from '~/types'
+import { Game } from '~/api'
 
-const props = defineProps<{ match: Match }>()
+const props = defineProps<{ match: MatchTypes }>()
 
 const formatter = 'YYYY-MM-DD HH:mm'
 const formattedDatetime = useDateFormat(props.match.utc_time, formatter)
@@ -11,14 +11,7 @@ const formattedDatetime = useDateFormat(props.match.utc_time, formatter)
 const FULLTIME = 90
 const DELAY = 100
 
-const game = new Game(
-  props.match.home.shots,
-  props.match.home.xg,
-  props.match.home.played,
-  props.match.away.shots,
-  props.match.away.xg,
-  props.match.away.played,
-)
+const game = new Game(props.match)
 </script>
 
 <template>
@@ -42,42 +35,42 @@ const game = new Game(
         <div>{{ match.home.name }}</div>
         <div text="left gray" flex="~ gap1" justify-center p5>
           <div
-            v-if="game.state.value.homeGoalLog.length !== 0" i-carbon-circle-packing mt="0.3"
+            v-if="game.result.value.home.goalLog.length !== 0" i-carbon-circle-packing mt="0.3"
             style="min-width: 1.25rem;"
           />
-          {{ game.state.value.homeGoalLog }}
+          {{ game.result.value.home.goalLog }}
         </div>
       </div>
       <!-- 比分和状态 -->
       <div flex-1>
-        <div v-if="!game.state.value.played && !match.finished" text-8>
+        <div v-if="!game.result.value.played && !match.finished" text-8>
           -
         </div>
         <div v-else text-8>
           {{
-            match.finished ? match.home.score : game.state.value.homeScore
+            match.finished ? match.home.score : game.result.value.home.score
           }}
           -
           {{
-            match.finished ? match.away.score : game.state.value.awayScore
+            match.finished ? match.away.score : game.result.value.away.score
           }}
         </div>
         <div>
-          <div v-if="!game.state.value.played" text="gray">
+          <div v-if="!game.result.value.played" text="gray">
             {{ formattedDatetime }}
           </div>
-          <div v-else-if="game.state.value.timing >= 90">
+          <div v-else-if="game.result.value.timing >= 90">
             <div>
-              {{ game.state.value.homeXG.toFixed(2) }}
+              {{ game.result.value.home.xg.toFixed(2) }}
               - xG -
-              {{ game.state.value.awayXG.toFixed(2) }}
+              {{ game.result.value.away.xg.toFixed(2) }}
             </div>
             <span text="green-600" font-mono>
-              {{ game.state.value.xgProgress }}
+              {{ game.result.value.xgProgressBar }}
             </span>
           </div>
           <div v-else text="green-600 4">
-            {{ `${game.state.value.timing}:00` }}
+            {{ `${game.result.value.timing}:00` }}
           </div>
         </div>
         <!-- 按钮 -->
@@ -86,18 +79,18 @@ const game = new Game(
             Full time
           </div>
           <div
-            v-else-if="game.state.value.timing > 0 && game.state.value.timing < 90
+            v-else-if="game.result.value.timing > 0 && game.result.value.timing < 90
             " text="3"
           >
             <div>
               - Shots -
             </div>
             <div>
-              {{ game.state.value.homeShots }}
+              {{ game.result.value.home.shots }}
               <span text="green-600" font-mono>
-                {{ game.state.value.shotsProgress }}
+                {{ game.result.value.shotsProgressBar }}
               </span>
-              {{ game.state.value.awayShots }}
+              {{ game.result.value.away.shots }}
             </div>
           </div>
           <button v-else i-carbon-play-filled bg-green-600 @click="game.play(FULLTIME, DELAY)" />
@@ -111,10 +104,10 @@ const game = new Game(
         <div>{{ match.away.name }}</div>
         <div text="left gray" flex="~ gap1" justify-center p5>
           <div
-            v-if="game.state.value.awayGoalLog.length !== 0" i-carbon-circle-packing mt="0.3"
+            v-if="game.result.value.away.goalLog.length !== 0" i-carbon-circle-packing mt="0.3"
             style="min-width: 1.25rem;"
           />
-          {{ game.state.value.awayGoalLog }}
+          {{ game.result.value.away.goalLog }}
         </div>
       </div>
     </div>
