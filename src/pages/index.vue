@@ -1,29 +1,28 @@
 <script setup lang="ts">
 import { useDateFormat, useFetch, useNow } from '@vueuse/core'
 import { selectMatches } from '~/api'
+import type { MatchTypes, MatchesTypes } from '~/types'
+
+const MATCHES_URL = 'https://raw.githubusercontent.com/tanzhijian/score-simulator-data/release/matches.json'
 
 const today = useDateFormat(useNow(), 'YYYY-MM-DD')
 let selectedDate = today.value
 
-const selectedMatches = ref()
-const matchesData = ref()
+const selectedMatches = ref([]) as Ref<MatchTypes[]>
+const matchesData = ref({}) as Ref<MatchesTypes>
+
+async function init() {
+  const { data } = await useFetch(MATCHES_URL).get().json()
+  matchesData.value = data.value
+  filterMatches(selectedDate)
+}
 
 function filterMatches(date: string) {
   selectedDate = date
   selectedMatches.value = selectMatches(date, matchesData.value)
 }
 
-async function getMatchesData() {
-  const url
-    = 'https://raw.githubusercontent.com/tanzhijian/score-simulator-data/release/matches.json'
-  const { data } = await useFetch(url).get().json()
-  matchesData.value = data.value
-  filterMatches(selectedDate)
-}
-
-selectedMatches.value = []
-matchesData.value = {}
-getMatchesData()
+onMounted(init)
 </script>
 
 <template>
