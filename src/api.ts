@@ -1,5 +1,5 @@
 import type { MatchTypes, MatchesTypes } from '~/types'
-import { Frame, FrameTeam, Result, ResultTeam } from '~/models'
+import { Result, ResultTeam, Step, StepTeam } from '~/models'
 
 export function selectMatches(
   date: string,
@@ -43,8 +43,8 @@ export class Game {
     return xg
   }
 
-  attack(): Frame {
-    const frame = new Frame(new FrameTeam(), new FrameTeam())
+  attack(): Step {
+    const step = new Step(new StepTeam(), new StepTeam())
 
     const homeXGPerShot = this.match.home.xg / this.match.home.shots
     const awayXGPerShot = this.match.away.xg / this.match.away.shots
@@ -57,20 +57,20 @@ export class Game {
 
     if (Math.random() < shotProbPerMinute) {
       if (Math.random() < homeShotPercentage) {
-        frame.home.shot = true
-        frame.home.xg = this.generateXG(homeXGPerShot)
+        step.home.shot = true
+        step.home.xg = this.generateXG(homeXGPerShot)
         if (Math.random() < homeXGPerShot)
-          frame.home.score = true
+          step.home.score = true
       }
       else {
-        frame.away.shot = true
-        frame.away.xg = this.generateXG(awayXGPerShot)
+        step.away.shot = true
+        step.away.xg = this.generateXG(awayXGPerShot)
         if (Math.random() < awayXGPerShot)
-          frame.away.score = true
+          step.away.score = true
       }
     }
 
-    return frame
+    return step
   }
 
   play(fulltime: number = 90, delay: number = 100): void {
@@ -78,17 +78,17 @@ export class Game {
     this.result.value.played = true
 
     const intervalId = setInterval(() => {
-      const frame = this.attack()
-      this.result.value.home.shots += +frame.home.shot
-      this.result.value.home.xg += frame.home.xg
-      this.result.value.home.score += +frame.home.score
-      this.result.value.away.shots += +frame.away.shot
-      this.result.value.away.xg += frame.away.xg
-      this.result.value.away.score += +frame.away.score
+      const step = this.attack()
+      this.result.value.home.shots += +step.home.shot
+      this.result.value.home.xg += step.home.xg
+      this.result.value.home.score += +step.home.score
+      this.result.value.away.shots += +step.away.shot
+      this.result.value.away.xg += step.away.xg
+      this.result.value.away.score += +step.away.score
 
-      if (frame.home.score)
+      if (step.home.score)
         this.result.value.home.goalMinutes.push(this.result.value.timing)
-      else if (frame.away.score)
+      else if (step.away.score)
         this.result.value.away.goalMinutes.push(this.result.value.timing)
 
       this.result.value.timing += 1

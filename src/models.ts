@@ -118,7 +118,7 @@ export class Result {
   }
 }
 
-export class FrameTeam {
+export class StepTeam {
   constructor(
     public shot: boolean = false,
     public score: boolean = false,
@@ -126,9 +126,9 @@ export class FrameTeam {
   ) {}
 }
 
-export class Frame {
+export class Step {
   constructor(
-    public home: FrameTeam,
-    public away: FrameTeam,
+    public home: StepTeam,
+    public away: StepTeam,
   ) {}
 }
